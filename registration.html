@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Portal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .login-type-btn {
+            width: 49%;
+            margin: 5px;
+        }
+
+        .login-btn {
+            width: 100%;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .skill-input {
+            position: relative;
+        }
+
+        .suggested-skills {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .selected-skill {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .selected-skills {
+            margin-top: 10px;
+        }
+    </style>
+    <!-- <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .login-container:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .login-type-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .employee-btn {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        .employer-btn {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+
+        .registration-form {
+            margin-top: 20px;
+        }
+
+        .input-field {
+            width: calc(100% - 20px);
+            padding: 12px 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #3498db;
+        }
+
+        .skill-input {
+            position: relative;
+        }
+
+        .suggested-skills {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            width: calc(100% - 20px);
+            margin-top: 5px;
+            z-index: 1;
+            display: none;
+            border-radius: 5px;
+        }
+
+        .suggested-skills div {
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .suggested-skills div:hover {
+            background-color: #f5f5f5;
+        }
+
+        .selected-skills {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .selected-skill {
+            margin: 4px;
+            padding: 8px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .selected-skill:hover {
+            background-color: #2980b9;
+        }
+
+        .login-btn {
+            background-color: #27ae60;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #219653;
+        }
+        .selected-skills {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .selected-skill {
+            margin: 4px;
+            padding: 8px;
+            background-color: #3498db;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .selected-skill span {
+            margin-right: 5px;
+        }
+
+        .selected-skill:hover {
+            background-color: #2980b9;
+        }
+
+        .suggested-skills div {
+            padding: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .suggested-skills div:hover {
+            background-color: #f5f5f5;
+        }
+
+        .suggested-skills span {
+            margin-right: 5px;
+        }
+    </style> -->
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome to the Company Portal</h2>
+        
+        <div>
+            <!-- <button class="login-type-btn employee-btn" onclick="showEmployeeForm()">Employee Login</button> -->
+            <!-- <button class="login-type-btn employer-btn" onclick="showEmployerForm()">Employer Login</button> -->
+        </div>
+
+        <form id="employee-form" class="login-form">
+            <!-- Employee Login Fields -->
+        </form>
+
+        <form id="employer-form" class="login-form" style="display: none;">
+            <!-- Employer Login Fields -->
+        </form>
+
+        <form id="registration-form" class="registration-form">
+            <input type="text" class="input-field" placeholder="Full Name" required>
+            <input type="password" class="input-field" placeholder="Password" required>
+            <input type="text" class="input-field" placeholder="Experience" required>
+
+            <div class="skill-input">
+                <input type="text" class="input-field" placeholder="Skills" id="skillsInput" oninput="suggestSkills()">
+                <div class="suggested-skills" id="suggestedSkills"></div>
+            </div>
+
+            <div class="selected-skills" id="selectedSkills"></div>
+
+            <button type="submit" class="login-btn">Register as Employee</button>
+        </form>
+    </div>
+    <script>
+        const skillsInput = document.getElementById('skillsInput');
+        const selectedSkillsList = document.getElementById('selectedSkills');
+        let allSkills = ['JavaScript', 'Python', 'HTML', 'CSS', 'Java', 'React', 'Node.js', 'SQL', 'Angular', 'C#'];
+        let selectedSkills = [];m,
+
+        skillsInput.addEventListener('input', suggestSkills);
+
+        function suggestSkills() {
+            const inputText = skillsInput.value.trim().toLowerCase();
+            // Check if the input field is not empty
+            if (inputText !== '') {
+                const matchingSkills = allSkills.filter(skill => skill.toLowerCase().includes(inputText));
+                // Display the matching skills
+                selectedSkillsList.innerHTML = '';
+                matchingSkills.forEach(skill => {
+                    const skillItem = document.createElement('li');
+                    skillItem.classList.add('selected-skill');
+                    skillItem.textContent = skill;
+                    skillItem.onclick = () => selectSkill(skill);
+                    selectedSkillsList.appendChild(skillItem);
+                });
+            } 
+            else {
+                // If the input field is empty, hide the suggestions
+                selectedSkillsList.innerHTML = '';
+            }
+        }
+
+        function selectSkill(skill) {
+            selectedSkills.push(skill);
+            allSkills = allSkills.filter(s => s !== skill);
+            updateSelectedSkillsList();
+            suggestSkills();
+        }
+
+        function updateSelectedSkillsList() {
+            selectedSkillsList.innerHTML = '';
+            selectedSkills.forEach(skill => {
+                const skillItem = document.createElement('li');
+                skillItem.classList.add('selected-skill');
+                skillItem.textContent = skill;
+                skillItem.onclick = () => unselectSkill(skill);
+                selectedSkillsList.appendChild(skillItem);
+            });
+        }
+
+        function unselectSkill(skill) {
+            selectedSkills = selectedSkills.filter(s => s !== skill);
+            allSkills.push(skill);
+            updateSelectedSkillsList();
+            suggestSkills();
+        }
+
+        skillsInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' && skillsInput.value.trim() !== '') {
+                const newSkill = skillsInput.value.trim();
+                selectSkill(newSkill);
+                skillsInput.value = '';
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
